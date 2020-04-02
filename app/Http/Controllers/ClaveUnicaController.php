@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\User;
 
 class ClaveUnicaController extends Controller
 {
     public function autenticar(){
+        $redirect = '/monitor/report';
+
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
         $redirect_uri = urlencode(env("CLAVEUNICA_CALLBACK"));
-        $state = base64_encode(csrf_token().'/monitor/report');
+        $state = base64_encode(csrf_token().$redirect);
         $scope = 'openid+run+name+email';
 
         $url=$url_base.urlencode('?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&response_type=code&state='.$state);
@@ -44,9 +47,48 @@ class ClaveUnicaController extends Controller
 
         $user_cu = json_decode($response);
 
+        $user = new User();
+        $user->id = $user_cu->RolUnico->numero;
+        $user->dv = $user_cu->RolUnico->DV;
+        $user->name = implode(' ', $user_cu->name->nombres);
+        $user->fathers_family = $user_cu->name->apellidos[0];
+        $user->fathers_family = $user_cu->name->apellidos[1];
+        $user->email = $user_cu->email;
+
+        $redirect = substr(base64_decode($state), 40);
+
+/*
+[RolUnico] => stdClass Object
+    (
+        [DV] => 4
+        [numero] => 44444444
+        [tipo] => RUN
+    )
+
+[sub] => 2594
+[name] => stdClass Object
+    (
+        [apellidos] => Array
+            (
+                [0] => Del rio
+                [1] => Gonzalez
+            )
+
+        [nombres] => Array
+            (
+                [0] => Maria
+                [1] => Carmen
+                [2] => De los angeles
+            )
+
+    )
+
+[email] => mcdla@mail.com
+*/
+
         echo '<pre>';
-        echo substr(base64_decode($state), 40);
-        print_r($user_cu);
+        echo $redirect."<br>";
+        print_r($user);
         echo '</pre>';
     }
 
