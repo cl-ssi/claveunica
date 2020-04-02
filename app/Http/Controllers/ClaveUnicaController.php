@@ -9,7 +9,7 @@ use App\User;
 class ClaveUnicaController extends Controller
 {
     public function autenticar(){
-        $redirect = '../monitor/lab/results';
+        $redirect = '../monitor/lab/login';
 
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
