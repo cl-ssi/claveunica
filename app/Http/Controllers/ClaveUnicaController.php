@@ -9,7 +9,7 @@ use App\User;
 class ClaveUnicaController extends Controller
 {
     public function autenticar(){
-        $redirect = '/lab/results';
+        $redirect = '../monitor/lab/results';
 
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
@@ -98,6 +98,7 @@ $id = session()->get( 'id' );
         echo '<pre>';
         print_r($user);
         echo '</pre>';
+        https://i.saludiquique.cl/test/monitor/lab/results
 */
 
 
