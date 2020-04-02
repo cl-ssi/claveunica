@@ -42,10 +42,10 @@ class ClaveUnicaController extends Controller
             'state' => csrf_token(),
         ]);
 
-        $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
-        $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
-
-        $user_cu = json_decode($response);
+        // $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
+        // $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
+        //
+        // $user_cu = json_decode($response);
 
         $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
 
