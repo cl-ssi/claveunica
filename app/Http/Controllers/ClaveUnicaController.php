@@ -9,7 +9,7 @@ use App\User;
 class ClaveUnicaController extends Controller
 {
     public function autenticar(){
-        $redirect = '/monitor/report';
+        $redirect = '/lab/results';
 
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
@@ -52,7 +52,7 @@ class ClaveUnicaController extends Controller
         $user->dv = $user_cu->RolUnico->DV;
         $user->name = implode(' ', $user_cu->name->nombres);
         $user->fathers_family = $user_cu->name->apellidos[0];
-        $user->fathers_family = $user_cu->name->apellidos[1];
+        $user->mothers_family = $user_cu->name->apellidos[1];
         $user->email = $user_cu->email;
 
         $redirect = substr(base64_decode($state), 40);
@@ -84,12 +84,23 @@ class ClaveUnicaController extends Controller
     )
 
 [email] => mcdla@mail.com
-*/
+
+->with( [ 'id' => $id ] )
+
+// in PHP
+$id = session()->get( 'id' );
+
+// in Blade
+{{ session()->get( 'id' ) }}
+
+
 
         echo '<pre>';
-        echo $redirect."<br>";
         print_r($user);
         echo '</pre>';
+*/
     }
+
+    return redirect()->to($redirect)->send();
 
 }
