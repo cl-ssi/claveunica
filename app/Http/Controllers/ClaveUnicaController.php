@@ -47,15 +47,29 @@ class ClaveUnicaController extends Controller
 
         $user_cu = json_decode($response);
 
-        $user = new User();
-        $user->id = $user_cu->RolUnico->numero;
-        $user->dv = $user_cu->RolUnico->DV;
-        $user->name = implode(' ', $user_cu->name->nombres);
-        $user->fathers_family = $user_cu->name->apellidos[0];
-        $user->mothers_family = $user_cu->name->apellidos[1];
-        $user->email = $user_cu->email;
+        $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
 
-        $redirect = substr(base64_decode($state), 40);
+        return redirect()->to($redirect)->send();
+
+        // $url_base = 'https://i.saludiquique.cl/monitor/lab/results';
+        // $response = Http::asForm()->post($url_base, [
+        //     'id'                => $user_cu->RolUnico->numero;,
+        //     'dv'                => $user_cu->RolUnico->DV,
+        //     'name'              => implode(' ', $user_cu->name->nombres),
+        //     'fathers_family'    => $user_cu->name->apellidos[0],
+        //     'mothers_family'    => $user_cu->name->apellidos[1],
+        //     'email'             => $user_cu->email,
+        // ]);
+
+        // $user = new User();
+        // $user->id = $user_cu->RolUnico->numero;
+        // $user->dv = $user_cu->RolUnico->DV;
+        // $user->name = implode(' ', $user_cu->name->nombres);
+        // $user->fathers_family = $user_cu->name->apellidos[0];
+        // $user->mothers_family = $user_cu->name->apellidos[1];
+        // $user->email = $user_cu->email;
+
+
 
 /*
 [RolUnico] => stdClass Object
@@ -102,6 +116,6 @@ $id = session()->get( 'id' );
 */
 
 
-        return redirect()->to($redirect)->send();
+
     }
 }
