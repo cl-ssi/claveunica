@@ -99,8 +99,8 @@ $id = session()->get( 'id' );
         print_r($user);
         echo '</pre>';
 */
+
+
+        return redirect()->to($redirect)->send();
     }
-
-    return redirect()->to($redirect)->send();
-
 }
