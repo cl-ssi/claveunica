@@ -28,7 +28,8 @@ class HomeController extends Controller
         $response = Http::get($url);
         $stat = $response->json();
         //$json = '{"total":429,"positives":17,"pending":149,"negatives":263}';
-        //return json_decode($json,true);
+        printe_r($stat);
+        die();
         return view('welcome',compact('stat'));
     }
 
