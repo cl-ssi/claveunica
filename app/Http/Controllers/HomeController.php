@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,21 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {
+        $url = 'https://i.saludiquique.cl/monitor/lab/suspect_cases/stat';
+        $response = Http::get($url);
+        $stat = $response->json();
+        //$json = '{"total":429,"positives":17,"pending":149,"negatives":263}';
+        //return json_decode($json,true);
+        return view('welcome',compact('stat'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function home()
     {
         return view('home');
     }

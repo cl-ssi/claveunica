@@ -70,7 +70,7 @@
 
                     <ul class="list-unstyled mt-3 mb-4">
                         <h2>Región de Tarapacá</h2>
-                        <h1 class="card-title gb_rojo">13 <small class="text-muted">positivos</small></h1>
+                        <h1 class="card-title gb_rojo">{{ $stat['positive'] }} <small class="text-muted">positivos</small></h1>
                         <li>415 enviados a análisis</li>
                         <li>263 negativos</li>
                         <li>139 pendientes</li>
