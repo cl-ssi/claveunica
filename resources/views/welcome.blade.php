@@ -1,102 +1,131 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sitio web del Servicio de Salud Iquique">
+    <meta name="author" content="Alvaro Torres Fuchslocher">
+    <title>{{ config('app.name') }}</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
+    <!-- Favicons -->
+    <meta name="theme-color" content="#563d7c">
+
+    <style>
+        h1 {
+            font-family: Sans-serif;
+            font-weight: 200;
+            color: #006fb3;
+            font-size: 2.4rem;
+        }
+        .gb_azul {
+            color: #006fb3;
+        }
+        .gb_rojo {
+            color: #fe6565;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
             }
+        }
+    </style>
 
-            .full-height {
-                height: 100vh;
-            }
+</head>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm container">
+        <h5 class="my-0 mr-md-auto font-weight-normal"> <img src="{{ asset('images/gob-header.svg') }}" alt="Logo del gobierno de chile"> </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="http://www.saludiquique.cl">Web Servicio de Salud</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="http://intranet.saludiquique.cl">Intranet</a>
+    </div>
 
-            .position-ref {
-                position: relative;
-            }
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center container">
+        <h1 class="display-5 mb-3">{{ config('app.name') }}</h1>
+        <div class="d-flex justify-content-center">
+            <table class="align-self-center">
+                <tr>
+                    <td style="background-color: #006fb3;" width="300" height="6"></td>
+                    <td style="background-color: #fe6565;" width="300" height="6"></td>
+                </tr>
+            </table>
+        </div>
+        <p class="text-muted mt-4">Bienvenido al portal de sistemas del Servicio de Salud de Iquique.</p>
+    </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Coronavirus</h4>
                 </div>
-            @endif
+                <div class="card-body">
 
-            <div class="content">
-                <div class="title m-b-md">
-                    <a href="{{ route('claveunica.autenticar') }}">
-                        <img src="https://digital.gob.cl/images/logo-claveunica.svg" width="200" alt="Logo Clave única">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <h2>Región de Tarapacá</h2>
+                        <h1 class="card-title gb_rojo">13 <small class="text-muted">positivos</small></h1>
+                        <li>415 enviados a análisis</li>
+                        <li>263 negativos</li>
+                        <li>139 pendientes</li>
+                    </ul>
+                    <a href="{{ route('claveunica.autenticar') }}" class="btn btn-lg btn-block btn-outline-primary">
+                        Resultado exámenes <img src="{{ asset('images/btn_claveunica_119px.png') }}" alt="Logo Clave única">
                     </a>
                 </div>
+            </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img" src="{{ asset('images/sintomas.png') }}" alt="Sintomas COVID19">
+            </div>
+
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img" src="{{ asset('images/prevencion-contagio.png') }}" alt="Prevención COVID19">
+            </div>
+
+
+        </div>
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+                    <small class="d-block mb-3 text-muted">&copy; 2020</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Portales del estado</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="http://www.gob.cl">Gobierno de Chile</a></li>
+                        <li><a class="text-muted" href="http://www.minsal.cl">Ministerio de Salud</a></li>
+                        <li><a class="text-muted" href="http://www.saludiquique.cl">Servicio de Salud Iquique</a> </li>
+                        <li><a class="text-muted" href="http://oirs.minsal.cl/">Oficina de Informaciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Relacionados</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="https://www.gob.cl/coronavirus/">Coronavirus</a></li>
+                        <li><a class="text-muted" href="https://www.gob.cl/coronavirus/casosconfirmados/">Casos Confirmados</a> </li>
+                        <li><a class="text-muted" href="https://www.gob.cl/plannacionaldecancer/">Plan nacional de cancer</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Acerca</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>Desarrollado por la Unidad TIC.</li>
+                        <li><a class="text-muted" href="mailto:sistemas.ssi@redsalud.gobc.">sistemas.ssi@redsalud.gob.cl</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </body>
+        </footer>
+    </div>
+</body>
+
 </html>
