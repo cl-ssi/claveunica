@@ -51,16 +51,6 @@ class ClaveUnicaController extends Controller
 
         return redirect()->to($redirect)->send();
 
-        // $url_base = 'https://i.saludiquique.cl/monitor/lab/results';
-        // $response = Http::asForm()->post($url_base, [
-        //     'id'                => $user_cu->RolUnico->numero;,
-        //     'dv'                => $user_cu->RolUnico->DV,
-        //     'name'              => implode(' ', $user_cu->name->nombres),
-        //     'fathers_family'    => $user_cu->name->apellidos[0],
-        //     'mothers_family'    => $user_cu->name->apellidos[1],
-        //     'email'             => $user_cu->email,
-        // ]);
-
         // $user = new User();
         // $user->id = $user_cu->RolUnico->numero;
         // $user->dv = $user_cu->RolUnico->DV;
@@ -69,6 +59,9 @@ class ClaveUnicaController extends Controller
         // $user->mothers_family = $user_cu->name->apellidos[1];
         // $user->email = $user_cu->email;
 
+        // echo '<pre>';
+        // print_r($user);
+        // echo '</pre>';
 
 
 /*
@@ -99,20 +92,6 @@ class ClaveUnicaController extends Controller
 
 [email] => mcdla@mail.com
 
-->with( [ 'id' => $id ] )
-
-// in PHP
-$id = session()->get( 'id' );
-
-// in Blade
-{{ session()->get( 'id' ) }}
-
-
-
-        echo '<pre>';
-        print_r($user);
-        echo '</pre>';
-        https://i.saludiquique.cl/test/monitor/lab/results
 */
 
 
