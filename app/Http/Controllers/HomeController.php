@@ -24,9 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $url = 'https://i.saludiquique.cl/monitor/lab/suspect_cases/stat';
-        $response = Http::get($url);
-        $stat = $response->json();
+        if(env('APP_ENV') == 'local') {
+            $stat['total'] = 429;
+            $stat['positives'] = 15;
+            $stat['pending'] = 149;
+            $stat['negatives'] = 263;
+        }
+        else {
+            $url = 'https://i.saludiquique.cl/monitor/lab/suspect_cases/stat';
+            $response = Http::get($url);
+            $stat = $response->json();
+        }
+
 
         return view('welcome',compact('stat'));
     }

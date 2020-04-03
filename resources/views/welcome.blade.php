@@ -70,10 +70,11 @@
 
                     <ul class="list-unstyled mt-3 mb-4">
                         <h2>Región de Tarapacá</h2>
-                        <h1 class="card-title gb_rojo">{{ $stat['positives'] }} <small class="text-muted">positivos</small></h1>
-                        <li>{{ $stat['total'] }} enviados a análisis</li>
-                        <li>{{ $stat['negatives'] }} negativos</li>
-                        <li>{{ $stat['pending'] }} pendientes</li>
+                        <li>{{ $stat['total'] }} casos enviados a análisis</li>
+                        <h1 class="card-title gb_rojo">{{ $stat['positives'] }} <small class="text-muted"> casos positivos</small></h1>
+                        <li>{{ $stat['negatives'] }} casos negativos</li>
+                        <li>{{ $stat['pending'] }} casos pendiente resultado</li>
+
                     </ul>
                     <a href="{{ route('claveunica.autenticar') }}" class="btn btn-lg btn-block btn-outline-primary">
                         Resultado exámenes <img src="{{ asset('images/btn_claveunica_119px.png') }}" alt="Logo Clave única">
