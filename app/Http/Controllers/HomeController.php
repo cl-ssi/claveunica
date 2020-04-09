@@ -31,7 +31,7 @@ class HomeController extends Controller
             $stat['negatives'] = 263;
         }
         else {
-            $url = 'https://i.saludiquique.cl/monitor/lab/suspect_cases/stat';
+            $url = 'https://i.saludiquique.cl/monitor/api/stat';
             $response = Http::get($url);
             $stat = $response->json();
         }
