@@ -114,7 +114,7 @@
                     <h5>Relacionados</h5>
                     <ul class="list-unstyled text-small">
                         <li><a class="text-muted" href="https://www.gob.cl/coronavirus/">Coronavirus</a></li>
-                        <li><a class="text-muted" href="https://www.gob.cl/coronavirus/casosconfirmados/">Casos Confirmados</a> </li>
+                        <li><a class="text-muted" href="https://www.gob.cl/coronavirus/cifrasoficiales/">Cifras oficiales coronavirus</a> </li>
                         <li><a class="text-muted" href="https://www.gob.cl/plannacionaldecancer/">Plan nacional de cancer</a></li>
 
                     </ul>
