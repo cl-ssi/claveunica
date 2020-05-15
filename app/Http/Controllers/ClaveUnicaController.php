@@ -20,11 +20,7 @@ class ClaveUnicaController extends Controller
         $state = base64_encode(csrf_token()).$redirect;
         $scope = 'openid+run+name+email';
 
-        $url=$url_base.urlencode('?client_id='.$client_id.
-                                 '&redirect_uri='.$redirect_uri.
-                                 '&scope='.$scope.
-                                 '&response_type=code'.
-                                 '&state='.$state);
+        $url=$url_base.urlencode('?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&response_type=code'.'&state='.$state);
 
         return redirect()->to($url)->send();
     }
