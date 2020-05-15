@@ -47,7 +47,7 @@ class ClaveUnicaController extends Controller
 
         /* Paso especial de SSI */
         /* Obtengo la url del sistema al que voy a redireccionar el login true */
-        $redirect     = substr(base64_decode($state), 40);
+        $redirect     = base64_decode(substr(base64_decode($state), 40));
         $access_token = json_decode($response)->access_token;
 
         $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
