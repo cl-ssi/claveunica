@@ -12,6 +12,8 @@ class ClaveUnicaController extends Controller
         /* Primer paso, redireccionar al login de clave única */
         $redirect = '../monitor/lab/login';
 
+        //die(url()->previous());
+
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
         $redirect_uri = urlencode(env("CLAVEUNICA_CALLBACK"));
