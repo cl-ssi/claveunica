@@ -8,27 +8,21 @@ use App\User;
 
 class ClaveUnicaController extends Controller
 {
-    public function autenticar(Request $request){
-        /* Primer paso, redireccionar al login de clave única */
-
-        $redirect = $request->input('redirect');
-        //'../monitor/lab/login' -> L21vbml0b3IvbGFiL2xvZ2lu
+    public function autenticar(){
+        $redirect = '../monitor/lab/login';
 
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
         $redirect_uri = urlencode(env("CLAVEUNICA_CALLBACK"));
-        $state = base64_encode(csrf_token()).$redirect;
+        $state = base64_encode(csrf_token().$redirect);
         $scope = 'openid+run+name+email';
 
-        $url=$url_base.urlencode('?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&response_type=code'.'&state='.$state);
+        $url=$url_base.urlencode('?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&response_type=code&state='.$state);
 
         return redirect()->to($url)->send();
     }
 
     public function callback(Request $request) {
-        /* Segundo paso, login de clave única devuelve code y state */
-        /* Enviar credenciales de la institución a clave única */
-
         $code = $request->input('code');
         $state = $request->input('state'); // token
 
@@ -45,72 +39,60 @@ class ClaveUnicaController extends Controller
             'redirect_uri' => $redirect_uri,
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'state' => $state,
+            'state' => csrf_token(),
         ]);
 
-
-
-        /* Paso especial de SSI */
-        /* Obtengo la url del sistema al que voy a redireccionar el login true */
-        // $redirect     = substr(base64_decode($state), 40);
-        // $access_token = json_decode($response)->access_token;
+        // $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
+        // $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
         //
-        // $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
-        //
-        // return redirect()->to($redirect)->send();
+        // $user_cu = json_decode($response);
+
+        $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
+
+        return redirect()->to($redirect)->send();
+
+        // $user = new User();
+        // $user->id = $user_cu->RolUnico->numero;
+        // $user->dv = $user_cu->RolUnico->DV;
+        // $user->name = implode(' ', $user_cu->name->nombres);
+        // $user->fathers_family = $user_cu->name->apellidos[0];
+        // $user->mothers_family = $user_cu->name->apellidos[1];
+        // $user->email = $user_cu->email;
+
+        // echo '<pre>';
+        // print_r($user);
+        // echo '</pre>';
 
 
+/*
+[RolUnico] => stdClass Object
+    (
+        [DV] => 4
+        [numero] => 44444444
+        [tipo] => RUN
+    )
 
-        /* Tercer Paso, obtener user info */
-
-        $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
-        $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
-
-        /* Obtiene la información del usuario */
-        $user_cu = json_decode($response);
-
-        $user = new User();
-        $user->id = $user_cu->RolUnico->numero;
-        $user->dv = $user_cu->RolUnico->DV;
-        $user->name = implode(' ', $user_cu->name->nombres);
-        $user->fathers_family = $user_cu->name->apellidos[0];
-        $user->mothers_family = $user_cu->name->apellidos[1];
-        $user->email = $user_cu->email;
-
-        echo '<pre>';
-        print_r($user);
-        echo '</pre>';
-
-
-        /*
-        [RolUnico] => stdClass Object
+[sub] => 2594
+[name] => stdClass Object
+    (
+        [apellidos] => Array
             (
-                [DV] => 4
-                [numero] => 44444444
-                [tipo] => RUN
+                [0] => Del rio
+                [1] => Gonzalez
             )
 
-        [sub] => 2594
-        [name] => stdClass Object
+        [nombres] => Array
             (
-                [apellidos] => Array
-                    (
-                        [0] => Del rio
-                        [1] => Gonzalez
-                    )
-
-                [nombres] => Array
-                    (
-                        [0] => Maria
-                        [1] => Carmen
-                        [2] => De los angeles
-                    )
-
+                [0] => Maria
+                [1] => Carmen
+                [2] => De los angeles
             )
 
-        [email] => mcdla@mail.com
+    )
 
-        */
+[email] => mcdla@mail.com
+
+*/
 
 
 
