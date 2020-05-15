@@ -78,7 +78,7 @@
                         <li>{{ $stat['pending'] }} casos pendiente resultado</li> -->
 
                     </ul>
-                    <a href="{{ route('claveunica.autenticar') }}?redirect=true" class="btn btn-lg btn-block btn-outline-primary">
+                    <a href="{{ route('claveunica.autenticar') }}?redirect=L21vbml0b3IvbGFiL2xvZ2lu" class="btn btn-lg btn-block btn-outline-primary">
                         Resultado exámenes <img src="{{ asset('images/btn_claveunica_119px.png') }}" alt="Logo Clave única">
                     </a>
                 </div>

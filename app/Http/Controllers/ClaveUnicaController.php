@@ -8,11 +8,11 @@ use App\User;
 
 class ClaveUnicaController extends Controller
 {
-    public function autenticar(){
+    public function autenticar(Request $request){
         /* Primer paso, redireccionar al login de clave única */
-        $redirect = '../monitor/lab/login';
-
-        //die(url()->previous());
+        //$redirect = '../monitor/lab/login';
+        $redirect = $request->input('redirect');
+        //die($redirect);
 
         $url_base = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
         $client_id = env("CLAVEUNICA_CLIENT_ID");
@@ -42,17 +42,27 @@ class ClaveUnicaController extends Controller
             'redirect_uri' => $redirect_uri,
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'state' => csrf_token(),
+            'state' => $state,
         ]);
+
+        /* Paso especial de SSI */
+        /* Obtengo la url del sistema al que voy a redireccionar el login true */
+        $redirect     = substr(base64_decode($state), 40);
+        $access_token = json_decode($response)->access_token;
+
+        $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
+
+        return redirect()->to($redirect)->send();
+
 
         // $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
         // $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
         //
         // $user_cu = json_decode($response);
 
-        $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
+        //$redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
 
-        return redirect()->to($redirect)->send();
+        //return redirect()->to($redirect)->send();
 
         // $user = new User();
         // $user->id = $user_cu->RolUnico->numero;
