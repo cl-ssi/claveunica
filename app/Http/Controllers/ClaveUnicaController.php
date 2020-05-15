@@ -54,7 +54,7 @@ class ClaveUnicaController extends Controller
 
         //die($url_redirect);
 
-        return redirect()->to($redirect)->send();
+        return redirect()->to($url_redirect)->send();
 
         // $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
         //
