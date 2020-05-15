@@ -59,7 +59,7 @@ class ClaveUnicaController extends Controller
         $redirect     = substr(base64_decode($state), 40);
         $access_token = json_decode($response)->access_token;
 
-        $url_redirect = env('APP_URL').$redirect.'/'.$access_token
+        $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
 
         return redirect()->to($redirect)->send();
 
