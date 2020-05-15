@@ -47,34 +47,33 @@ class ClaveUnicaController extends Controller
 
         /* Paso especial de SSI */
         /* Obtengo la url del sistema al que voy a redireccionar el login true */
-        $redirect     = base64_decode(substr(base64_decode($state), 40));
-        $access_token = json_decode($response)->access_token;
-
-        $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
-
-        return redirect()->to($redirect)->send();
-
-
-        // $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
-        // $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
+        // $redirect     = base64_decode(substr(base64_decode($state), 40));
+        // $access_token = json_decode($response)->access_token;
         //
-        // $user_cu = json_decode($response);
+        // $url_redirect = env('APP_URL').$redirect.'/'.$access_token;
+        //
+        // return redirect()->to($redirect)->send();
 
-        //$redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
+        // $redirect = substr(base64_decode($state), 40).'/'.json_decode($response)->access_token;
+        //
+        // return redirect()->to($redirect)->send();
 
-        //return redirect()->to($redirect)->send();
+        $url_base = "https://www.claveunica.gob.cl/openid/userinfo/";
+        $response = Http::withToken(json_decode($response)->access_token)->post($url_base);
 
-        // $user = new User();
-        // $user->id = $user_cu->RolUnico->numero;
-        // $user->dv = $user_cu->RolUnico->DV;
-        // $user->name = implode(' ', $user_cu->name->nombres);
-        // $user->fathers_family = $user_cu->name->apellidos[0];
-        // $user->mothers_family = $user_cu->name->apellidos[1];
-        // $user->email = $user_cu->email;
+        $user_cu = json_decode($response);
 
-        // echo '<pre>';
-        // print_r($user);
-        // echo '</pre>';
+        $user = new User();
+        $user->id = $user_cu->RolUnico->numero;
+        $user->dv = $user_cu->RolUnico->DV;
+        $user->name = implode(' ', $user_cu->name->nombres);
+        $user->fathers_family = $user_cu->name->apellidos[0];
+        $user->mothers_family = $user_cu->name->apellidos[1];
+        $user->email = $user_cu->email;
+
+        echo '<pre>';
+        print_r($user);
+        echo '</pre>';
 
 
 /*
