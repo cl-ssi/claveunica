@@ -72,10 +72,6 @@
                         <h2>Región de Tarapacá</h2>
                         <p>Si perteneces a la región de Tarapacá, puedes revisar el resultado de tu exámen de COVID-19
                         utilizando tu clave única del estado, haciendo click en el botón de abajo.</p>
-                        <!-- <li>{{ $stat['total'] }} casos enviados a análisis</li>
-                        <h1 class="card-title gb_rojo">{{ $stat['positives'] }} <small class="text-muted"> casos positivos</small></h1>
-                        <li>{{ $stat['negatives'] }} casos negativos</li>
-                        <li>{{ $stat['pending'] }} casos pendiente resultado</li> -->
 
                     </ul>
                     <a href="{{ route('claveunica.autenticar') }}?redirect=L21vbml0b3IvbGFiL2xvZ2lu" class="btn btn-lg btn-block btn-outline-primary">

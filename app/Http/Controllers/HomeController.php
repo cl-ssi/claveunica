@@ -31,9 +31,13 @@ class HomeController extends Controller
             $stat['negatives'] = 263;
         }
         else {
-            $url = 'https://i.saludiquique.cl/monitor/api/stat';
-            $response = Http::get($url);
-            $stat = $response->json();
+            // $url = 'https://i.saludiquique.cl/monitor/api/stat';
+            // $response = Http::get($url);
+            // $stat = $response->json();
+            $stat['total'] = 429;
+            $stat['positives'] = 15;
+            $stat['pending'] = 149;
+            $stat['negatives'] = 263;
         }
 
 
