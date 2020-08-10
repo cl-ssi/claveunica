@@ -34,7 +34,6 @@
             }
         }
     </style>
-
 </head>
 
 <body>
@@ -57,6 +56,7 @@
             </table>
         </div>
         <p class="text-muted mt-4">Bienvenido al portal de sistemas del Servicio de Salud de Iquique.</p>
+
     </div>
 
     <div class="container">
@@ -81,7 +81,29 @@
             </div>
 
             <div class="card mb-4 shadow-sm">
-                <img class="card-img" src="{{ asset('images/sintomas.png') }}" alt="Sintomas COVID19">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Estado de Urgencias</h4>
+                </div>
+
+                @php($array = json_decode(file_get_contents('status.json'),true))
+
+                <p class="text-muted mt-4">Ultima actualización: {{ $array['updated'] }}</p>
+
+                <table class="table table-sm">
+                    <tr>
+                        <th>Establecimiento</th>
+                        <th>En espera</th>
+                        <th>En box</th>
+                    </tr>
+                    @foreach($array['data'] as $nombre => $element)
+                        <tr>
+                            <td>{{ $nombre }}</td>
+                            <td>{{ $element['En espera'] }}</td>
+                            <td>{{ $element['En box'] }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+
             </div>
 
             <div class="card mb-4 shadow-sm">
