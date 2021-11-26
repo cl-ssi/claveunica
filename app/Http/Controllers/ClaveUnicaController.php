@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ClaveUnicaController extends Controller
 {
@@ -16,15 +17,19 @@ class ClaveUnicaController extends Controller
         $redirect_uri   = urlencode(env("CLAVEUNICA_CALLBACK"));
 
         $state = csrf_token();
-        $scope = 'openid+run+name';
+        $scope      = 'openid run name';
 
-        $url=$url_base.urlencode('?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&response_type=code&state='.$state);
+        $params     = '?client_id='.$client_id.
+                      '&redirect_uri='.$redirect_uri.
+                      '&scope='.$scope.
+                      '&response_type=code'.
+                      '&state='.$state;
 
-        return redirect()->to($url)->send();
+        return redirect()->to($url_base.$params)->send();
     }
 
     public function callback(Request $request) {
-        /* Segundo paso, el usuario ya se autentificó correctamente en CU y regornó a nuestro sistema */
+        /* Segundo paso, el usuario ya se autentificó correctamente en CU y retornó a nuestro sistema */
 
         /* Recepcionamos los siguientes parametros desde CU */
         $code   = $request->input('code');
@@ -70,12 +75,15 @@ class ClaveUnicaController extends Controller
         $user....
         $user->save();
 
+        // Iniciar sesión con ese usuario
+        Auth::login($user, true);
+
         return redirect()->route('home');
 
         */
 
 
-        
+
         /*
         [RolUnico] => stdClass Object
             (
@@ -106,5 +114,24 @@ class ClaveUnicaController extends Controller
 
         */
 
+    }
+
+    public function logout() {
+        /* Nos iremos al cerrar sesión en clave única y luego volvermos a nuestro sistema */
+        if(env('APP_ENV') == 'local')
+        {
+            /* Si estamos desarrollando cerramos localmente no más */
+            return redirect()->route('logout');
+        }
+        else
+        {
+            /* Url para cerrar sesión en clave única */
+            $url_logout     = "https://accounts.claveunica.gob.cl/api/v1/accounts/app/logout?redirect=";
+            /* Url para luego cerrar sesión en nuestro sisetema */
+            $url_redirect   = "https://www.saludiquique.app/logout";
+            $url            = $url_logout.urlencode($url_redirect);
+        }        
+
+        return redirect()->to($url)->send();
     }
 }
