@@ -1,0 +1,116 @@
+/*
+	BTN Clave Única.
+	Estilos gráficos para el botón de clave única.
+	V 1.1.0
+	por @pyanez
+	24/11/2020
+*/
+
+
+/* Boton estilo de base */
+.btn-cu {
+	/*display: inline-block;*/
+	display: flex;
+	justify-content: center;
+	font-family: Roboto, sans-serif;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border-radius: 0;
+}
+
+/*Icono ClaveÚnica*/
+.btn-cu .cl-claveunica {
+	display: inline;
+	float: left;
+	text-indent: -9999px;
+}
+/*Texto ClaveÚnica*/
+.btn-cu .texto {
+	padding-left: 3px;
+	text-decoration: underline;
+}
+
+/* Tamaño S */
+.btn-cu.btn-s {
+	width: 130px;
+	min-width: 130px;
+	height: 36px;
+	padding: 8px 10px !important;
+	font-size: 14px;
+}
+
+.btn-cu.btn-s .cl-claveunica {
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px;
+}
+
+/* Tamaño M */
+.btn-cu.btn-m {
+	width: 160px;
+	min-width: 160px;
+	height: 42px;
+	padding: 8px 18px 8px 15px !important;
+	font-size: 16px;
+	line-height: 1.6em;
+}
+
+.btn-cu.btn-m .cl-claveunica {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-size: 24px 24px;
+}
+
+/* Tamaño L */
+.btn-cu.btn-l {
+	width: 180px;
+	min-width: 180px;
+	height: 48px;
+	padding: 11px 18px !important;
+	font-size: 18px;
+}
+
+.btn-cu.btn-l .cl-claveunica {
+	width: 26px;
+	height: 26px;
+	background-size: 26px 26px;
+}
+
+/* Tamaño fluid-width */
+.btn-cu.btn-fw {
+	max-width: 550px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+/* Color Estandar */
+.btn-cu.btn-color-estandar {
+	background-color: #0F69C4;
+	color: #FFF;
+}
+.btn-cu.btn-color-estandar .cl-claveunica {
+	background: url(../icon/cu-blanco.svg);
+	/* Esta URL debe ser modificada segun donde 
+	    quede alojado el documento */
+}
+.btn-cu.btn-color-estandar:hover {
+	background-color: #0C549C;
+	color: #FFF;
+}
+
+.btn-cu.btn-color-estandar:active {
+	background-color: #093F75;
+	color: #FFF;
+}
+
+.btn-cu.btn-color-estandar:focus {
+	background-color: #0C549C;
+	color: #FFF;
+	outline: 1px dashed #000;
+}

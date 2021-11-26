@@ -11,6 +11,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cu.min.css') }}" rel="stylesheet">
 
     <!-- Favicons -->
     <meta name="theme-color" content="#563d7c">
@@ -42,7 +43,6 @@
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="http://www.saludiquique.cl">Web Servicio de Salud</a>
         </nav>
-        <a class="btn btn-outline-primary" href="http://intranet.saludiquique.cl">Intranet</a>
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center container">
@@ -64,30 +64,37 @@
 
             <div class="card mb-4 shadow-sm">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Coronavirus</h4>
+                    <h4 class="my-0 font-weight-normal">Tramites</h4>
                 </div>
                 <div class="card-body">
 
                     <ul class="list-unstyled mt-3 mb-4">
-                        <h2>Región de Tarapacá</h2>
-                        <p>Si perteneces a la región de Tarapacá, puedes revisar el resultado de tu exámen de COVID-19
-                        utilizando tu clave única del estado, haciendo click en el botón de abajo.</p>
+                        <h2>Título</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium pariatur esse, eum quasi repudiandae, iste vero sunt ipsa nihil voluptate assumenda, voluptatibus veritatis odio facere saepe! Neque beatae asperiores accusamus.</p>
 
                     </ul>
-                    <a href="{{ route('claveunica.autenticar') }}?redirect=L21vbml0b3IvbGFiL2xvZ2lu" class="btn btn-lg btn-block btn-outline-primary">
-                        Resultado exámenes <img src="{{ asset('images/btn_claveunica_119px.png') }}" alt="Logo Clave única">
-                    </a>
+                    <div class="row">
+                        <div class="mx-auto">
+                            <!-- Código para visualizar botón oficial iniciar sesión con ClaveÚnica-->
+                            <a class="btn-cu btn-m btn-color-estandar" 
+                                href="{{ route('claveunica.autenticar') }}" 
+                                title="Este es el botón Iniciar sesión de ClaveÚnica">
+                                <span class="cl-claveunica"></span>
+                                <span class="texto">Iniciar sesión</span>
+                            </a>
+                            <!--./ fin botón-->
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <div class="card mb-4 shadow-sm">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Estado de Urgencias</h4>
+                    <h4 class="my-0 font-weight-normal">Tramite 2</h4>
                 </div>
 
-                @php($array = json_decode(file_get_contents('status.json'),true))
 
-                <p class="text-muted mt-4">Ultima actualización: {{ $array['updated'] }}</p>
 
                 <table class="table table-sm">
                     <tr>
@@ -95,28 +102,42 @@
                         <th>En espera</th>
                         <th>En box</th>
                     </tr>
-                    @foreach($array['data'] as $nombre => $element)
+                    
                         <tr>
-                            <td>{{ $nombre }}</td>
-                            <td>{{ $element['En espera'] }}</td>
-                            <td>{{ $element['En box'] }}</td>
+                            <td>Cesfam Aguirre</td>
+                            <td>2</td>
+                            <td>4</td>
                         </tr>
-                    @endforeach
+
                 </table>
 
             </div>
 
             <div class="card mb-4 shadow-sm">
-                <img class="card-img" src="{{ asset('images/prevencion-contagio.png') }}" alt="Prevención COVID19">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Título</h4>
+                </div>
+                <div class="card-body">
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <h2></h2>
+                        <p></p>
+
+                    </ul>
+                    <div class="row">
+
+                    </div>
+
+                </div>
             </div>
 
 
         </div>
 
+
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
                 <div class="col-12 col-md">
-                    <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
                     <small class="d-block mb-3 text-muted">&copy; 2020</small>
                 </div>
                 <div class="col-6 col-md">

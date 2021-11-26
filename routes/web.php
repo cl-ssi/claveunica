@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClaveUnicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ Route::get('/','HomeController@index');
 
 //Auth::routes();
 
-Route::get('/claveunica','ClaveUnicaController@autenticar')->name('claveunica.autenticar');
-Route::get('/claveunica/callback','ClaveUnicaController@callback')->name('claveunica.callback');
+/* Rutas para implementar clave única */
+Route::get('/claveunica',[ClaveUnicaController::class,'autenticar'])->name('claveunica.autenticar');
+Route::get('/claveunica/callback',[ClaveUnicaController::class,'callback'])->name('claveunica.callback');
 
 //Route::get('/home', 'HomeController@home')->name('home');
