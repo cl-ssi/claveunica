@@ -12,7 +12,7 @@ class ClaveUnicaController extends Controller
     public function autenticar(Request $request)
     {
         /* Primer paso, redireccionar al login de clave única */
-        $url_base       = "https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize";
+        $url_base       = "https://accounts.claveunica.gob.cl/openid/authorize/";
         $client_id      = env("CLAVEUNICA_CLIENT_ID");
         $redirect_uri   = urlencode(env("CLAVEUNICA_CALLBACK"));
 
