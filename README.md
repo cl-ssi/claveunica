@@ -1,5 +1,10 @@
 # Implementación de Clave Única del estado de Chile con Laravel 8
 
+
+## Solicitar las credenciales de sandbox a clave única, ingresando las siguiente URL
+* Url Principal (donde estará el botón clave única) : https://miweb.cl
+* Url Callback (donde se redirecciona una vez autentificado): https://miweb.cl/claveunica/callback
+* Url Callback sandbox (puede ser la misma de arriba): https://miweb.cl/claveunica/callback
   
 
 > Para probar el sistema, tienes que tener acceso a la URL callback proporcionada al solicitar tus credenciales en clave única, ya que una vez autentificado, clave única redireccionará la respuesta a esa URL.
