@@ -26,8 +26,8 @@
 * Editar el archivo .env y agregar las credenciales de clave única y base de datos (opcional).
 * Ejectua `php artisan key:generate`
 * Ejecutar `composer install`
-* Ejecutar el servidor del proyecto `php artisan serve`
-* Abrir el navegador el proyecto.
+* Iniciar servidor web o bien a través del comando `php artisan serve`
+* Abrir el navegador en la URI del proyecto.
 
    
 
