@@ -1,4 +1,4 @@
-# Implementación de Clave Única del estado de Chile con PHP y Laravel 8
+# Implementación de Clave Única del estado de Chile con PHP y Laravel 8, 9.
 
 Clave única funciona con oAuth2 que en terminos simples el flujo es el siguiente:
 
@@ -10,7 +10,7 @@ Clave única funciona con oAuth2 que en terminos simples el flujo es el siguient
 function autenticar()
 {
     // las urls son de ejemplo, para que se entienda la idea, las reales están más abajo o en el código.
-    $url = https://claveunica.cl/cliente=123123&otros_parametros=12312
+    $url = 'https://claveunica.cl/cliente=123123&otros_parametros=12312';
     redirect $url;
 }
 
@@ -30,16 +30,16 @@ function callback($token)
 # Paso 3, ruta https://miweb.cl/claveunica/logout
 # El último paso es cerrar sesión, funciona igual que el login, redireccionas tu aplicación a una URL de CU, 
 # se cierra la sesión de CU y te devuelve a una URL de tu aplicación Callback (de cierre de sessión).
-function logoutCu()
+function logout() // de ClaveUnicaController
 {
-    $url = https://claveunica.cl/logout?parametros=123213&direcccion_callback_logout=https://miweb.cl/logout
+    $url = 'https://claveunica.cl/logout?parametros=123213&direcccion_callback_logout=https://miweb.cl/logout';
     redirect $url;
 }
 
 # Paso 4, ruta https://miweb.cl/logout
 # La URL callback se ejecuta y debe realizar la lógica de cierre de tu sistema, 
 # ejemplo: cerrar sesión, borrar cookies, regenerar token, etc.
-function logoutLocal()
+function logout() // de LoginController
 {
     // cierre de sessión local
     $current_user_logged->logout();

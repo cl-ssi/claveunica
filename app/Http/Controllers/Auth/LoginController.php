@@ -37,4 +37,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+	/** Cierre de sessión local */
+	public function logout(){
+        auth()->logout();
+        
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('welcome');
+    }
 }
